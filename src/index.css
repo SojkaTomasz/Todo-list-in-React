@@ -1,0 +1,104 @@
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 62.5%;
+	font-family: "Roboto", sans-serif;
+	color: #fffcfc;
+	background: radial-gradient(circle, #343434 0, #282828 100%);
+	background-attachment: fixed;
+}
+
+#root {
+	position: relative;
+	max-width: 1600px;
+	margin: 0 auto;
+	padding: 10px 10px 30px 10px;
+	font-size: 1.6em;
+}
+
+h2,
+h3,
+button,
+li,
+label {
+	font-weight: bold;
+}
+h1 {
+	margin: 0;
+	font-size: 4em;
+	font-family: "Bangers", cursive;
+	color: tomato;
+}
+
+h2 {
+	margin: 0 0 15px 0;
+}
+h3 {
+	margin: 0;
+}
+
+ul {
+	display: flex;
+	justify-content: center;
+	margin: 10px 0;
+	padding-left: 0;
+	text-align: left;
+	list-style: none;
+}
+
+li {
+	display: inline-block;
+	margin: 3px;
+	padding: 6px 8px;
+	font-size: 0.85em;
+	border-radius: 10px;
+	background-color: #232323;
+	transition: 0.4s;
+	cursor: pointer;
+}
+
+input {
+	margin-top: 5px;
+	padding: 8px;
+	border-radius: 10px;
+	border: none;
+	font-size: 1em;
+	cursor: pointer;
+}
+
+button {
+	border: none;
+	border-radius: 10px;
+	text-transform: uppercase;
+	color: #232323;
+	background-color: tomato;
+	transition: 0.4s;
+	cursor: pointer;
+}
+
+button:hover,
+li:hover {
+	background-color: rgb(225, 87, 63);
+	/* color: white; */
+}
+
+@media (min-width: 668px) {
+	h1 {
+		font-size: 4.5em;
+	}
+	h2 {
+		font-size: 1.7rem;
+	}
+	#root {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+	}
+}
+
+@media (min-width: 992px) {
+	#root {
+		justify-content: space-around;
+	}
+}

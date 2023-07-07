@@ -1,0 +1,82 @@
+.taskSection {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 5px 0;
+	padding: 5px 5px 5px 10px;
+	border-radius: 6px;
+	background-color: #272727;
+	animation: animationAdd 0.6s;
+}
+
+@keyframes animationAdd {
+	0% {
+		transform: scale(0.5);
+		opacity: 0;
+	}
+	60% {
+		transform: scale(1.05);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.animationIcon {
+	animation: animationIcon 0.6s;
+}
+@keyframes animationIcon {
+	0% {
+		transform: scale(0);
+		opacity: 0;
+	}
+	60% {
+		transform: scale(1.5);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.task {
+	margin: 0;
+}
+
+.dateInfo {
+	margin: 2px 0 0 0;
+	font-size: 0.7em;
+}
+
+.date {
+	color: tomato;
+}
+
+.btnSection {
+	display: flex;
+	margin-left: 5px;
+}
+
+.btn {
+	margin: 0 2px;
+	padding: 8px;
+}
+
+.animationOut {
+	animation: animationOut 0.4s;
+}
+
+@keyframes animationOut {
+	0% {
+		transform: scale(1);
+	}
+	40% {
+		transform: scale(1.15);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(0.5);
+		opacity: 0;
+	}
+}

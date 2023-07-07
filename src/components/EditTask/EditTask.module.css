@@ -1,0 +1,109 @@
+.sectionEditTask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100vh;
+	background-color: #1313134a;
+	border-radius: 50%;
+	box-shadow: 0 0 500px 500px #1313134a;
+	animation: animation 0.3s;
+}
+
+@keyframes animation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.section {
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	height: 200px;
+	padding: 20px;
+	border-radius: 25px;
+	background-color: #181818;
+	opacity: 0;
+	animation: animationBox 0.4s 0.3s forwards;
+}
+
+@keyframes animationBox {
+	0% {
+		opacity: 1;
+		transform: scale(0);
+	}
+	50% {
+		transform: scale(1.1);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.title {
+	font-weight: bold;
+	text-transform: uppercase;
+	color: white;
+}
+
+.text {
+	width: 95%;
+	margin: 10px 0;
+}
+
+.dateItems {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.date {
+	width: 150px;
+	font-size: 1.1em;
+}
+.btnSection {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+	margin-top: 15px;
+}
+
+.btn {
+	width: 48%;
+	padding: 10px;
+	font-size: 1em;
+}
+
+.checkbox {
+	display: flex;
+	flex-direction: column;
+}
+
+.important {
+	height: 25px;
+}
+
+@media (min-width: 668px) {
+	.section {
+		width: 60%;
+	}
+}
+@media (min-width: 830px) {
+}
+@media (min-width: 992px) {
+	.section {
+		width: 45%;
+	}
+}
