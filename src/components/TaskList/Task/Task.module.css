@@ -63,11 +63,11 @@
 	padding: 8px;
 }
 
-.animationOut {
-	animation: animationOut 0.4s;
+.animationDeletion {
+	animation: animationDeletion 0.4s;
 }
 
-@keyframes animationOut {
+@keyframes animationDeletion {
 	0% {
 		transform: scale(1);
 	}

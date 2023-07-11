@@ -5,6 +5,8 @@ const EditTask = props => {
 	const [task, setTask] = useState(props.task)
 	const [date, setDate] = useState(props.date)
 	const [important, setImportant] = useState(props.important)
+	const [errorTask, setErrorTask] = useState(false)
+	const [errorDate, setErrorDate] = useState(false)
 
 	const handleChangeInput = e => {
 		if (e.target.name === "important") {
@@ -17,7 +19,11 @@ const EditTask = props => {
 	}
 
 	const acceptTaskChange = () => {
-		props.acceptTaskChange(props.id, task, date, important)
+		task ? setErrorTask(false) : setErrorTask(true)
+		date ? setErrorDate(false) : setErrorDate(true)
+		if (task && date) {
+			props.acceptTaskChange(props.id, task, date, important)
+		}
 	}
 
 	return (
@@ -28,17 +34,24 @@ const EditTask = props => {
 					className={styles.text}
 					name='task'
 					value={task}
+					onKeyDown={e => e.key === "Enter" && acceptTaskChange()}
 					onChange={handleChangeInput}
+					placeholder='Treść zadania...'
 					type='text'
 				/>
-				<div className={styles.dateItems}>
-					<input
-						className={styles.date}
-						name='date'
-						value={date}
-						onChange={handleChangeInput}
-						type='date'
-					/>
+				{errorTask && <p className={styles.errorTask}>Musisz podać terść zadania</p>}
+				<div className={styles.dateBox}>
+					<div className={styles.dateItems}>
+						<input
+							className={styles.date}
+							name='date'
+							value={date}
+							onKeyDown={e => e.key === "Enter" && acceptTaskChange()}
+							onChange={handleChangeInput}
+							type='date'
+						/>
+						{errorDate && <p className={styles.errorTask}>Musisz podać datę</p>}
+					</div>
 					<div className={styles.checkbox}>
 						<label htmlFor='checkboxEdit'>Priorytet</label>
 						<input

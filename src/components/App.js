@@ -25,7 +25,7 @@ class App extends Component {
 			dateDone: null,
 			important,
 			active: true,
-			animationOut: false,
+			animationDeletion: false,
 		}
 		this.setState(prevState => {
 			return {tasks: prevState.tasks.concat(newTask)}
@@ -49,7 +49,7 @@ class App extends Component {
 		let tasksNew = [...this.state.tasks]
 		tasksNew = tasksNew.map(task => {
 			if (task.id === id) {
-				task.animationOut = true
+				task.animationDeletion = true
 			}
 			return task
 		})

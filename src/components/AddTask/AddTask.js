@@ -48,7 +48,7 @@ const AddTask = props => {
 					value={task}
 					onKeyDown={e => e.key === "Enter" && addTask()}
 					onChange={handleChangeInput}
-					placeholder='Dodaj zadanie...'
+					placeholder='Treść zadania...'
 					type='text'
 					id='task'
 				/>

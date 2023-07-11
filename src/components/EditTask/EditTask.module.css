@@ -59,25 +59,56 @@
 
 .text {
 	width: 95%;
-	margin: 10px 0;
+	margin: 10px 0 0 0;
 }
 
-.dateItems {
+.dateBox {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-around;
 	width: 100%;
 }
 
+.dateItems {
+	text-align: center;
+}
+
 .date {
+	margin-top: 8px;
 	width: 150px;
 	font-size: 1.1em;
 }
+
 .btnSection {
 	display: flex;
 	justify-content: space-evenly;
 	width: 100%;
 	margin-top: 15px;
+}
+
+.errorTask {
+	margin: 5px 0;
+	color: tomato;
+	animation: animationError 0.5s;
+}
+
+@keyframes animationError {
+	0% {
+		transform: scale(1);
+	}
+	20% {
+		transform: scale(1.1);
+	}
+	40% {
+		transform: scale(0.9);
+	}
+	70% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+	}
 }
 
 .btn {
@@ -87,6 +118,7 @@
 }
 
 .checkbox {
+	margin-top: 8px;
 	display: flex;
 	flex-direction: column;
 }
@@ -100,8 +132,10 @@
 		width: 60%;
 	}
 }
+
 @media (min-width: 830px) {
 }
+
 @media (min-width: 992px) {
 	.section {
 		width: 45%;

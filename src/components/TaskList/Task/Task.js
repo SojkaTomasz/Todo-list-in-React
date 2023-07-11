@@ -23,7 +23,7 @@ const Task = props => {
 	const showOnlyImportant =
 		props.sort[2].active && !important ? {display: "none"} : {display: "flex"}
 
-	const animationOut = props.animationOut ? styles.animationOut : {}
+	const animationDeletion = props.animationDeletion ? styles.animationDeletion : {}
 
 	const changeReturnIcon =
 		window.innerWidth > 992 ? (
@@ -35,7 +35,7 @@ const Task = props => {
 	if (active) {
 		return (
 			<div
-				className={`${styles.taskSection} ${animationOut}`}
+				className={`${styles.taskSection} ${animationDeletion}`}
 				style={showOnlyImportant}
 			>
 				<div>
@@ -61,7 +61,7 @@ const Task = props => {
 		)
 	} else {
 		return (
-			<div className={`${styles.taskSection} ${animationOut}`}>
+			<div className={`${styles.taskSection} ${animationDeletion}`}>
 				<div>
 					<p className={styles.task}>
 						{iconImportant} {task}
