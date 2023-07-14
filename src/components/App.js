@@ -1,9 +1,8 @@
-import {Component} from "react"
+import { Component } from "react"
+import ClickButton from "../context/ClickButton"
 import AddTask from "./AddTask/AddTask"
 import TaskList from "./TaskList/TaskList"
 import EditTask from "./EditTask/EditTask"
-
-// import styles from "./App.module.css"
 
 class App extends Component {
 	state = {
@@ -11,9 +10,9 @@ class App extends Component {
 		ShowEditTask: false,
 		editTask: [],
 		sort: [
-			{id: 0, text: "Po dacie", active: true},
-			{id: 1, text: "Alfabetycznie", active: false},
-			{id: 2, text: "Priorytet", active: false},
+			{ id: 0, text: "Po dacie", active: true },
+			{ id: 1, text: "Alfabetycznie", active: false },
+			{ id: 2, text: "Priorytet", active: false },
 		],
 	}
 
@@ -28,7 +27,7 @@ class App extends Component {
 			animationDeletion: false,
 		}
 		this.setState(prevState => {
-			return {tasks: prevState.tasks.concat(newTask)}
+			return { tasks: prevState.tasks.concat(newTask) }
 		})
 	}
 
@@ -42,7 +41,7 @@ class App extends Component {
 			}
 			return task
 		})
-		this.setState({tasks})
+		this.setState({ tasks })
 	}
 
 	delateTask = id => {
@@ -53,22 +52,22 @@ class App extends Component {
 			}
 			return task
 		})
-		this.setState({tasks: tasksNew})
+		this.setState({ tasks: tasksNew })
 		const tasks = tasksNew.filter(task => task.id !== id)
 		setTimeout(() => {
-			this.setState({tasks})
+			this.setState({ tasks })
 		}, 380)
 	}
 
 	showEditTask = id => {
-		this.setState({ShowEditTask: !this.state.ShowEditTask})
+		this.setState({ ShowEditTask: !this.state.ShowEditTask })
 		const tasksNew = [...this.state.tasks]
 		const editTask = tasksNew.filter(task => task.id === id)
-		this.setState({editTask})
+		this.setState({ editTask })
 	}
 
 	closeEditTask = () => {
-		this.setState({ShowEditTask: !this.state.ShowEditTask})
+		this.setState({ ShowEditTask: !this.state.ShowEditTask })
 	}
 
 	acceptTaskChange = (idEdit, taskEdit, dateEdit, importantEdit) => {
@@ -81,11 +80,11 @@ class App extends Component {
 			}
 			return task
 		})
-		this.setState({tasks})
-		this.setState({ShowEditTask: !this.state.ShowEditTask})
+		this.setState({ tasks })
+		this.setState({ ShowEditTask: !this.state.ShowEditTask })
 	}
 
-	sortTask = id => {
+	sortTaskImportant = id => {
 		let sort = [...this.state.sort]
 		sort = sort.map(task => {
 			if (task.id === id) {
@@ -95,34 +94,30 @@ class App extends Component {
 			}
 			return task
 		})
-		this.setState({sort})
+		this.setState({ sort })
 	}
 
 	render() {
-		const {tasks, editTask, ShowEditTask, sort} = this.state
+		const { tasks, editTask, ShowEditTask, sort } = this.state
 
-		const editedTask = editTask.map(task => (
-			<EditTask
-				key={task.id}
-				{...task}
-				closeEditTask={this.closeEditTask}
-				acceptTaskChange={this.acceptTaskChange}
-			/>
-		))
+		const editedTask = editTask.map(task => <EditTask key={task.id} {...task} />)
 
 		return (
-			<>
+			<ClickButton.Provider
+				value={{
+					done: id => this.doneActiveTask(id),
+					edit: id => this.showEditTask(id),
+					delate: id => this.delateTask(id),
+					sortTaskImportant: id => this.sortTaskImportant(id),
+					acceptTaskChange: (id, task, date, important) =>
+						this.acceptTaskChange(id, task, date, important),
+					closeEditTask: id => this.closeEditTask(id),
+				}}
+			>
 				<AddTask addTask={this.addTask} />
-				<TaskList
-					tasks={tasks}
-					doneActiveTask={this.doneActiveTask}
-					delateTask={this.delateTask}
-					showEditTask={this.showEditTask}
-					sort={sort}
-					sortTask={this.sortTask}
-				/>
+				<TaskList sort={sort} tasks={tasks} />
 				{ShowEditTask && editedTask}
-			</>
+			</ClickButton.Provider>
 		)
 	}
 }

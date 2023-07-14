@@ -1,29 +1,27 @@
+import ClickButton from "../../../context/ClickButton"
 import styles from "./Task.module.css"
+import { useContext } from "react"
 
 const Task = props => {
-	const {
-		id,
-		task,
-		date,
-		dateDone,
-		delateTask,
-		showEditTask,
-		doneActiveTask,
-		important,
-		active,
-	} = props
+	const { id, task, date, dateDone, important, active } = props
+
+	const done = useContext(ClickButton)
+	const edit = useContext(ClickButton)
+	const delate = useContext(ClickButton)
 
 	const iconImportant = important ? (
 		<i
-			style={{color: "tomato"}}
+			style={{ color: "tomato" }}
 			className={`${styles.animationIcon} fa-solid fa-star`}
 		></i>
 	) : null
 
 	const showOnlyImportant =
-		props.sort[2].active && !important ? {display: "none"} : {display: "flex"}
+		props.sort[2].active && !important ? { display: "none" } : { display: "flex" }
 
-	const animationDeletion = props.animationDeletion ? styles.animationDeletion : {}
+	const animationDeletion = props.animationDeletion
+		? styles.animationDeletion
+		: {}
 
 	const changeReturnIcon =
 		window.innerWidth > 992 ? (
@@ -47,13 +45,13 @@ const Task = props => {
 					</p>
 				</div>
 				<div className={styles.btnSection}>
-					<button onClick={() => doneActiveTask(id)} className={styles.btn}>
+					<button onClick={() => done.done(id)} className={styles.btn}>
 						<i className='fa-solid fa-check'></i>
 					</button>
-					<button onClick={() => showEditTask(id)} className={styles.btn}>
+					<button onClick={() => edit.edit(id)} className={styles.btn}>
 						<i className='fa-solid fa-pen-to-square'></i>
 					</button>
-					<button onClick={() => delateTask(id)} className={styles.btn}>
+					<button onClick={() => delate.delate(id)} className={styles.btn}>
 						<i className='fa-solid fa-xmark'></i>
 					</button>
 				</div>
@@ -71,10 +69,10 @@ const Task = props => {
 					</p>
 				</div>
 				<div className={styles.btnSection}>
-					<button onClick={() => doneActiveTask(id)} className={styles.btn}>
+					<button onClick={() => done.done(id)} className={styles.btn}>
 						{changeReturnIcon}
 					</button>
-					<button onClick={() => delateTask(id)} className={styles.btn}>
+					<button onClick={() => delate.delate(id)} className={styles.btn}>
 						<i className='fa-solid fa-xmark'></i>
 					</button>
 				</div>

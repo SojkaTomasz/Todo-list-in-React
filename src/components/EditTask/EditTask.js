@@ -1,5 +1,6 @@
+import { useContext, useState } from "react"
+import ClickButton from "../../context/ClickButton"
 import styles from "./EditTask.module.css"
-import {useState} from "react"
 
 const EditTask = props => {
 	const [task, setTask] = useState(props.task)
@@ -7,6 +8,9 @@ const EditTask = props => {
 	const [important, setImportant] = useState(props.important)
 	const [errorTask, setErrorTask] = useState(false)
 	const [errorDate, setErrorDate] = useState(false)
+
+	const accept = useContext(ClickButton)
+	const close = useContext(ClickButton)
 
 	const handleChangeInput = e => {
 		if (e.target.name === "important") {
@@ -22,7 +26,7 @@ const EditTask = props => {
 		task ? setErrorTask(false) : setErrorTask(true)
 		date ? setErrorDate(false) : setErrorDate(true)
 		if (task && date) {
-			props.acceptTaskChange(props.id, task, date, important)
+			accept.acceptTaskChange(props.id, task, date, important)
 		}
 	}
 
@@ -69,7 +73,7 @@ const EditTask = props => {
 					<button onClick={acceptTaskChange} className={styles.btn}>
 						Zatwierdź
 					</button>
-					<button onClick={props.closeEditTask} className={styles.btn}>
+					<button onClick={close.closeEditTask} className={styles.btn}>
 						Anuluj
 					</button>
 				</div>

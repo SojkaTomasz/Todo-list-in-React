@@ -1,5 +1,5 @@
+import SortTaskImportant from "./SortTaskImportant/SortTaskImportant"
 import Task from "./Task/Task"
-import SortTask from "./SortTask/SortTask"
 import styles from "./TaskList.module.css"
 
 const TaskList = props => {
@@ -17,35 +17,24 @@ const TaskList = props => {
 	done.sort((a, b) => b.dateDone.localeCompare(a.dateDone))
 
 	const taskActive = active.map(task => (
-		<Task
-			key={task.id}
-			{...task}
-			doneActiveTask={props.doneActiveTask}
-			delateTask={props.delateTask}
-			sort={props.sort}
-			showEditTask={props.showEditTask}
-		/>
+		<Task key={task.id} sort={props.sort} {...task} />
 	))
 
 	const taskDone = done.map(task => (
-		<Task
-			key={task.id}
-			{...task}
-			sort={props.sort}
-			delateTask={props.delateTask}
-			doneActiveTask={props.doneActiveTask}
-		/>
+		<Task key={task.id} sort={props.sort} {...task} />
 	))
 
-	const sortTask = props.sort.map(item => (
-		<SortTask key={item.id} {...item} sortTask={props.sortTask} />
+	const sortTaskImportant = props.sort.map(item => (
+		<SortTaskImportant key={item.id} {...item} />
 	))
 
 	return (
 		<>
 			<div className={styles.sectionTaskActive}>
-				<h2 className={styles.title}>Lista zadań</h2>
-				<ul> {sortTask}</ul>
+				<h2 className={styles.title}>
+					Lista zadań <em>({taskActive.length}) </em>
+				</h2>
+				<ul> {sortTaskImportant}</ul>
 				{taskActive.length > 0 ? (
 					taskActive
 				) : (
